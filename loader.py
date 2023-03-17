@@ -2,7 +2,9 @@ from connection import Connection
 import pandas as pd
 
 class Loader:
-
+    '''
+    Loading to DB.
+    '''
     def load_to_db(self, schema, table_name, df):
 
         dt=pd.DataFrame()
