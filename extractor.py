@@ -1,12 +1,11 @@
 import pandas as pd 
 
-class Extract():
-    
+class Extractor:
+    '''
+    Extract archive to df.
+    '''
     def __init__(self):
-        '''
-        Fill self.col with names of columns of the
-        '''
-        self.col = ['']
+        pass
     
     def read_csv(self, file_path, cols, delimiter_str):
         '''
@@ -20,6 +19,8 @@ class Extract():
         return pd.read_csv(r'{}', delimiter=f'{delimiter_str}', names=cols, header=0).format(file_path)
     
     def read_json(self, file_path_path):
-        
+        '''
+        Read a json file
+        '''
         return pd.read_json(r'{}', lines=True). format(file_path_path)
     
