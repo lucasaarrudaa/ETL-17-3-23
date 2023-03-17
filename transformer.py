@@ -4,7 +4,9 @@ import numpy as np
 class Transformer:    
         
     def table_maker(self, extract_list):
-        
+        '''
+        Changing types of columns in DF.        
+        '''
         dt=pd.DataFrame(extract_list)
         dtypes ={'campaign_date':'string',
                  'campaign_name':'string',
@@ -27,7 +29,7 @@ class Transformer:
         
     def extract_string(self, table, column, regex, new_col_name):
         '''
-        Extract a string using REGEX.
+        Extracting a string using REGEX.
         
         Parameters:
                 column: name of column 
@@ -42,30 +44,35 @@ class Transformer:
         return table[new_col_name]
     
     def delete(self, df, column):
-        
+        '''
+        Deleting a column from DF.
+        '''
         self.delete = df.loc[:, ~df.columns.isin([f'{column}'])]
     
-    def rename(self, df, column1, column2):
-        df = df.rename(columns = {f'{column1}':f'{column2}'}, inplace = True)
+    def rename(self, df, column1, new_name):
+        df = df.rename(columns = {f'{column1}':f'{new_name}'}, inplace = True)
         return df
+        '''
+        Renaming a column from a DF.
+        '''
 
     def concat(self, new_df, column1, column2):
         '''
-        concatening dfs
+        Concat dfs.
         '''
         new_df = pd.concat([column1, column2], ignore_index=True)
         return new_df
         
     def join(self, new_df, column1, column2):
         '''
-        join columns and attribute to new df.
+        Join columns and attribute to new DF.
         '''
         new_df = column1.join(column2, rsuffix='_r', lsuffix='_l')
         return new_df
     
     def fill_numpy(self, df, rows, value, new_df):
         '''
-        generate values to insert in the rows of a specific column of DF
+        Generate values to insert in the rows of a specific column of DF.
         
         Parameters:
                 df = name of df
