@@ -1,5 +1,6 @@
 from connection import Connection
 import pandas as pd
+import pymysql
 
 class Loader:
     '''
@@ -19,6 +20,6 @@ class Loader:
                  if_exists='append',
                  index=False
                  )
-
+            print('Upload has sucessfully')
         except Exception as e:
             raise(e)
