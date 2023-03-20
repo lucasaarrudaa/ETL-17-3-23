@@ -3,11 +3,11 @@ import numpy as np
 
 class Transformer:    
         
-    def table_maker(self, extract_list):
+    def table_maker(self, df):
         '''
         Changing types of columns in DF.        
         '''
-        dt=pd.DataFrame(extract_list)
+        dt=pd.DataFrame(df)
         dtypes ={'campaign_date':'object',
                  'campaign_name':'object',
                  'impressions':'float64',
@@ -16,8 +16,8 @@ class Transformer:
                  'advertising':'object',
                  'ip':'object',
                  'device_id':'object',
-                 'click':'object',
-                 'data':'datetime64',
+                 'campaign_link':'object',
+                 'data_click':'datetime64',
                  'lead_id':'object',
                  'registered_at':'datetime64',
                  'credit_decision':'object',
@@ -73,6 +73,19 @@ class Transformer:
         '''
         new_df = df1.join(df2, rsuffix='_r', lsuffix='_l')
         return new_df
+    
+    def drop_duplicates(self, df, col):
+        '''
+        Delete duplicates in a specific column of a DF.
+        
+        Parameters:
+                df: df you want to modify
+                col (string): column name you want to drop
+        Returns:
+                df without specified column
+        '''
+        dt = df.drop_duplicates([f'{col}'])
+        return dt
     
     def fill(self, df, rows, value):
         '''
