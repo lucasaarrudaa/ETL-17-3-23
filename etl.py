@@ -36,10 +36,15 @@ cols1 = ['device_id',
         'revenue']
 
 # Reading donwloaded archives
-df_customers = c.csv('datasets/customer_leads_funnel.csv', columns=cols1)
-df_fb = fb.json('datasets/facebook_ads_media_costs.jsonl')
-df_ggl = ggl.json('datasets/google_ads_media_costs.jsonl')
-df_pv = pv.csv('datasets/pageview.txt', delimiter='|', columns= cols2, header=0)
+# df_customers = c.csv('datasets/customer_leads_funnel.csv', columns=cols1)
+# df_fb = fb.json('datasets/facebook_ads_media_costs.jsonl')
+# df_ggl = ggl.json('datasets/google_ads_media_costs.jsonl')
+# df_pv = pv.csv('datasets/pageview.txt', delimiter='|', columns= cols2, header=0)
+
+df_customers = pd.read_csv(c,  names=cols1, header=0)
+df_pv = pd.read_csv(pv,  delimiter="|", names=cols2, header=0)
+df_fb = pd.read_json(fb, lines=True)
+df_ggl = pd.read_json(ggl, lines=True)
 
 # Cleaning columns
 df_pv['ip'] = Transformer().extract_string(df_pv, 'ips', '\d{3}\.\d{1,3}\.\d{1,3}\.\d{1,3}')
@@ -70,9 +75,6 @@ Transformer().rename(df_ggl, 'date', 'campaign_date')
 Transformer().rename(df_ggl, 'google_campaign_name', 'campaign_name')
 
 # Assigning values ​​to the variables to populate the new DF
-fbs = np.full(460, 'http://www.facebook.com')
-ggls = np.full(5796, 'http://google.com.br')
-
 df_fb = Transformer().fill(df_fb, 460, 'http://www.facebook.com')
 df_ggl = Transformer().fill(df_ggl, 5796, 'http://google.com.br')
 
@@ -80,8 +82,6 @@ df_ggl = Transformer().fill(df_ggl, 5796, 'http://google.com.br')
 advertisings = Transformer().concat(df_fb, df_ggl)
 customers_data = Transformer().concat(df_pv, df_customers)
 table = pd.concat([advertisings, customers_data])
-
-print(table)
 
 # Uploading DF to DB
 table = Transformer().table_maker(table)
