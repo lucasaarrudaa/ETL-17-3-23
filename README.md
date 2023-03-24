@@ -15,7 +15,7 @@ Inside the conf/ directory, there's a docker compose file putting a postgres doc
 Application's log will be written at /logs directory.
 
 $ pip install requirements.txt
-Obs: Aconselho fortemente o uso do virtualenv para configurar seu ambiente.
+Note: I strongly advise using virtualenv to configure your environment.
 
 Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
