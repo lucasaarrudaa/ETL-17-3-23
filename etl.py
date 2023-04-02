@@ -1,9 +1,8 @@
-from connection import Connection
-from extractor import ExtractorS3
-from transformer import Transformer
-from loader import Loader
+from conf.connection import Connection
+from src.extractor import ExtractorS3
+from src.transformer import Transformer
+from src.loader import Loader
 import pandas as pd
-import numpy as np
 
 # Extracting from bucket to local
 c = ExtractorS3('datalake-my-lucas-bucket')
@@ -34,12 +33,6 @@ cols1 = ['device_id',
         'credit_decision_at', 
         'signed_at', 
         'revenue']
-
-# Reading donwloaded archives
-# df_customers = c.csv('datasets/customer_leads_funnel.csv', columns=cols1)
-# df_fb = fb.json('datasets/facebook_ads_media_costs.jsonl')
-# df_ggl = ggl.json('datasets/google_ads_media_costs.jsonl')
-# df_pv = pv.csv('datasets/pageview.txt', delimiter='|', columns= cols2, header=0)
 
 df_customers = pd.read_csv(c,  names=cols1, header=0)
 df_pv = pd.read_csv(pv,  delimiter="|", names=cols2, header=0)
@@ -85,4 +78,4 @@ table = pd.concat([advertisings, customers_data])
 
 # Uploading DF to DB
 table = Transformer().table_maker(table)
-load = Loader().load_to_db('mydb', 'anuncios', table)
+load = Loader().load_to_db('mydb', 'anuncios2', table)
