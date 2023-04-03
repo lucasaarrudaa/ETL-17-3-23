@@ -8,21 +8,10 @@ class Etl:
     def __init__(self):    
         
         # Extracting from bucket to local
-        leads = ExtractorS3('datalake-my-lucas-bucket')
-        leads.download('data/customer_leads_funnel.csv',
-                    'datasets/customer_leads_funnel.csv')
-
-        fb = ExtractorS3('datalake-my-lucas-bucket')
-        fb.download('data/facebook_ads_media_costs.jsonl',
-                    'datasets/facebook_ads_media_costs.jsonl')
-
-        pv = ExtractorS3('datalake-my-lucas-bucket')
-        pv.download('data/pageview.txt',
-                    'datasets/pageview.txt')
-
-        ggl = ExtractorS3('datalake-my-lucas-bucket')
-        ggl.download('data/google_ads_media_costs.jsonl',
-                    'datasets/google_ads_media_costs.jsonl')
+        leads = ExtractorS3('datalake-my-lucas-bucket').download('data/customer_leads_funnel.csv', 'datasets/customer_leads_funnel.csv')
+        fb = ExtractorS3('datalake-my-lucas-bucket').download('data/facebook_ads_media_costs.jsonl', 'datasets/facebook_ads_media_costs.jsonl')
+        pv = ExtractorS3('datalake-my-lucas-bucket').download('data/pageview.txt','datasets/pageview.txt')
+        ggl = ExtractorS3('datalake-my-lucas-bucket').download('data/google_ads_media_costs.jsonl','datasets/google_ads_media_costs.jsonl')
 
         # Columns to dfs
         cols2 = ['ips',
