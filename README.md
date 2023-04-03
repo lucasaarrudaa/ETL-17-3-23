@@ -1,5 +1,5 @@
 
-Simple python ETL application from s3 to MySQL database.
+Simple python ETL application from s3 to Postgresql database.
 
 Installation
 Use the package manager pip to install dependency packages listed on requirements.txt file.
