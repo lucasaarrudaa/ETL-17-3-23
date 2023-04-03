@@ -21,7 +21,9 @@ class ExtractorLocal:
         Returns: 
             return the dataframe, when call the method, include to a variable to view.
         '''
-        return pd.read_csv(rf'{file_path}', names=columns, header=header, delimiter=delimiter)
+        csv = pd.read_csv(rf'{file_path}', names=columns, header=header, delimiter=delimiter)
+        
+        return csv 
 
     def json(self, file_path, lines_opt=True):
         '''
@@ -34,7 +36,9 @@ class ExtractorLocal:
             return the dataframe, when call the method, include to a variable to view.
 
         '''
-        return pd.read_json(f'{file_path}', lines=lines_opt)
+        json = pd.read_json(f'{file_path}', lines=lines_opt)
+        
+        return json
 
 
 class ExtractorS3:
@@ -50,8 +54,7 @@ class ExtractorS3:
                     name (string): The name of the bucket
                     archive (string): The location of the archive
         '''
-        global s3_client
-        s3_client = boto3.client('s3')
+        self.s3_client = boto3.client('s3')
         self.bucket_name = name
 
     def list_files(self, path):
@@ -64,6 +67,7 @@ class ExtractorS3:
         
         for obj in bucket.objects.filter(Prefix=f'{path}'):
             files.append(obj.key)
+            
         return files
 
     def download(self, s3_path, local_path):
@@ -79,12 +83,13 @@ class ExtractorS3:
                     the file from S3 to your destination folder.
         '''
         try:
-            s3_client.download_file(
+            self.s3_client.download_file(
                 f'{self.bucket_name}', f'{s3_path}', f'{local_path}')
         except:
             print("Was not posible to download archive from bucket")
+            downloaded = self.s3_client.download_file(f'{self.bucket_name}', f'{s3_path}', f'{local_path}')
 
-        return s3_client.download_file(f'{self.bucket_name}', f'{s3_path}', f'{local_path}')
+        return downloaded
 
     def upload(self, local_file_path, bucket_path):
         '''
@@ -100,12 +105,13 @@ class ExtractorS3:
                 returns the file from s3 to the folder you chose
         '''
         try:
-            s3_client.upload_file(f'{local_file_path}',
+            self.s3_client.upload_file(f'{local_file_path}',
                                   f'{self.bucket_name}', f'{bucket_path}')
         except:
             print("Was not posible to upload archive to bucket")
-
-            return s3_client.upload_file(f'{local_file_path}', f'{self.bucket_name}', f'{bucket_path}')
+            uploaded = self.s3_client.upload_file(f'{local_file_path}', f'{self.bucket_name}', f'{bucket_path}')
+            
+            return uploaded
 
     def csv(self, file_path, columns=None, header=None, delimiter=None):
         '''
@@ -119,8 +125,10 @@ class ExtractorS3:
         Returns: 
             return the dataframe, when call the method, include to a variable to view.
         '''
-        return pd.read_csv(rf'{file_path}', names=columns, header=header, delimiter=delimiter)
-
+        csv = pd.read_csv(rf'{file_path}', names=columns, header=header, delimiter=delimiter)
+        
+        return csv
+    
     def json(self, file_path, lines_opt=True):
         '''
         Open the archive (JSON) downloaded from s3 with a DF
@@ -130,4 +138,6 @@ class ExtractorS3:
         Returns: 
             return the dataframe, when call the method, include to a variable to view.
         '''
-        return pd.read_json(f'{file_path}', lines=lines_opt)
+        json = pd.read_json(f'{file_path}', lines=lines_opt)
+        
+        return json
