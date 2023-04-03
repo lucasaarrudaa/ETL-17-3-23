@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "bucket_dl" {
-    bucket = "datalake-my-lucas-bucket"
+    bucket = "bucket-lucas-las"
     acl="private"
 
     server_side_encryption_configuration {
@@ -14,3 +14,5 @@ resource "aws_s3_bucket" "bucket_dl" {
 provider "aws"{
     region="us-east-1"
 }
+
+
