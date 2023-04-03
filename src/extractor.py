@@ -1,16 +1,18 @@
-import pandas as pd 
+import pandas as pd
 import boto3
 
 class ExtractorLocal:
     '''
     Extract archive from local to df.
     '''
+
     def __init__(self):
         pass
-    def csv(self, file_path, columns = None, header = None, delimiter = None):
+
+    def csv(self, file_path, columns=None, header=None, delimiter=None):
         '''
         Read CSV
-        
+
         Parameters:         
             file_path: copy file path and paste here
             columns (string): is optional, set the name of te columns
@@ -19,9 +21,9 @@ class ExtractorLocal:
         Returns: 
             return the dataframe, when call the method, include to a variable to view.
         '''
-        return pd.read_csv(rf'{file_path}', names = columns, header = header, delimiter = delimiter)
-        
-    def json(self, file_path, lines_opt = True):
+        return pd.read_csv(rf'{file_path}', names=columns, header=header, delimiter=delimiter)
+
+    def json(self, file_path, lines_opt=True):
         '''
         Read json 
 
@@ -32,13 +34,14 @@ class ExtractorLocal:
             return the dataframe, when call the method, include to a variable to view.
 
         '''
-        return pd.read_json(f'{file_path}', lines = lines_opt)
-    
+        return pd.read_json(f'{file_path}', lines=lines_opt)
+
 
 class ExtractorS3:
     '''
     Extract archive from s3 to df.
     '''
+
     def __init__(self, name):
         '''
         Connecting to archive in s3 bucket.
@@ -50,6 +53,18 @@ class ExtractorS3:
         global s3_client
         s3_client = boto3.client('s3')
         self.bucket_name = name
+
+    def list_files(self, path):
+        '''
+        List all files in a path from s3 bucket
+        '''
+        s3 = boto3.resource('s3')
+        bucket = s3.Bucket(self.bucket_name)
+        files = []
+        
+        for obj in bucket.objects.filter(Prefix=f'{path}'):
+            files.append(obj.key)
+        return files
 
     def download(self, s3_path, local_path):
         '''
@@ -92,10 +107,10 @@ class ExtractorS3:
 
             return s3_client.upload_file(f'{local_file_path}', f'{self.bucket_name}', f'{bucket_path}')
 
-    def csv(self, file_path, columns = None, header = None, delimiter = None):
+    def csv(self, file_path, columns=None, header=None, delimiter=None):
         '''
         Open the archive (CSV) downloaded from s3 with a DF
-        
+
         Parameter:         
             optional (string): specific delimiter
             optional2 (string): header = 0 or None (default)
@@ -104,9 +119,9 @@ class ExtractorS3:
         Returns: 
             return the dataframe, when call the method, include to a variable to view.
         '''
-        return pd.read_csv(rf'{file_path}', names = columns, header = header, delimiter = delimiter)
+        return pd.read_csv(rf'{file_path}', names=columns, header=header, delimiter=delimiter)
 
-    def json(self, file_path, lines_opt = True):
+    def json(self, file_path, lines_opt=True):
         '''
         Open the archive (JSON) downloaded from s3 with a DF
 
@@ -115,8 +130,4 @@ class ExtractorS3:
         Returns: 
             return the dataframe, when call the method, include to a variable to view.
         '''
-        return pd.read_json(f'{file_path}', lines = lines_opt)
-    
-
-        
-    
+        return pd.read_json(f'{file_path}', lines=lines_opt)
