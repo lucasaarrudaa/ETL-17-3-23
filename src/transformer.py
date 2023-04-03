@@ -10,20 +10,20 @@ class Transformer:
         dt=pd.DataFrame(df)
         dtypes ={'campaign_date':'object',
                  'campaign_name':'object',
-                 'impressions':'float64',
-                 'clicks':'float64',
-                 'cost':'float64',
+                 'impressions':'object',
+                 'clicks':'object',
+                 'cost':'object',
                  'advertising':'object',
                  'ip':'object',
                  'device_id':'object',
                  'campaign_link':'object',
-                 'data_click':'datetime64',
+                 'data_click':'object',
                  'lead_id':'object',
-                 'registered_at':'datetime64',
+                 'registered_at':'object',
                  'credit_decision':'object',
-                 'credit_decision_at':'string',
-                 'signed_at':'datetime64',
-                 'revenue':'float64'}
+                 'credit_decision_at':'object',
+                 'signed_at':'object',
+                 'revenue':'object'}
         dt=dt.astype(dtype=dtypes)
         return dt
         
