@@ -8,7 +8,7 @@ To install the required dependencies, please use the following command using pip
 pip install -r requirements.txt
 Note: It is strongly recommended to use a virtual environment to configure your development environment.
 
-Usage
+Usage:
 To run the ETL process, execute the following command:
 
 python main.py
