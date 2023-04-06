@@ -11,7 +11,7 @@ Note: It is strongly recommended to use a virtual environment to configure your 
 Usage
 To run the ETL process, execute the following command:
 
-python etl.py
+python main.py
 Please make sure to set up all the required dependencies, such as PostgreSQL and MySQL Workbench, in order to ensure the proper functioning of the application.
 
 Objective
