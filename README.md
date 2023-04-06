@@ -1,3 +1,4 @@
+STATUS: WORKINNG
 
 Simple python ETL application from s3 to Postgresql database.
 
