@@ -1,12 +1,14 @@
-# etl-from-aws-s3
-
-## Digital Marketing Analytics
+# Digital Marketing Analytics
 
 ## Status: WORKING
 
 The datasources are:
 
-google_ads_media_costs.jsonl ==	Google ads costs
+|    Source     |    Details    |
+| ------------- | ------------- |
+| google_ads_media_costs.jsonl	  | Google ads costs  |
+| facebook_ads_media_costs.jsonl	  | Facebook ads costs  |
+pageviews.txt	 ==	Google ads costs
 facebook_ads_media_costs.jsonl	== Facebook ads costs
 pageviews.txt	== Ads accessed by users 
 customer_leads_funnel.csv	== User's lead Analytical table
