@@ -29,4 +29,4 @@ The main objective of this project is to integrate different datasets and create
 
 ## Conclusion
 
-The code is capable of extracting, transforming, and loading data from the datasets, integrating them into a single table, and loading them into a PostgreSQL database. An analytical table is created to answer business questions for the digital marketing team. This project demonstrates skills in ETL, Infrastructure as Code (IAC), data analysis, transformation, and processing, as well as the use of Docker Compose for containerization.
+The code is capable of extracting, transforming, and loading data from the datasets, integrating them into a single table, and loading them into a PostgreSQL database. An analytical table is created to answer business questions for the digital marketing team. This use skills in ETL, Infrastructure as Code (IAC), data analysis, transformation, and processing, as well as the use of Docker Compose for containerization.
