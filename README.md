@@ -1,6 +1,6 @@
 # etl-from-aws-s3
 
-## digital marketing analytics
+## Digital Marketing Analytics
 
 ## Status: WORKING
 
