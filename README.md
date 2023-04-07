@@ -1,14 +1,23 @@
-# ETL Application for Data Integration 
+# etl-from-aws-s3
+
+## digital marketing analytics
+
 ## Status: WORKING
 
-This is a simple Python ETL (Extract, Transform, Load) application that transfers data from Amazon S3 to a PostgreSQL database. The project aims to integrate four different datasets, including two CSV files, one JSON file, and one XML file, and prepare an analytical database or table for the digital marketing team to perform queries and answer business questions.
+The datasources are:
+
+google_ads_media_costs.jsonl ==	Google ads costs
+facebook_ads_media_costs.jsonl	== Facebook ads costs
+pageviews.txt	== Ads accessed by users 
+customer_leads_funnel.csv	== User's lead Analytical table
+
+This is a simple Python ETL (Extract, Transform, Load) application that transfers data from Amazon S3 to a PostgreSQL database. The project aims to integrate four different datasets, including two CSV files, one JSON file, and one XML file, and prepare an analytical database or table for the digital marketing team to perform queries and answer business questions. It also creates one big table containing all related data.
 
 ## Installation
 To install the required dependencies, please use the following command using pip, the Python package manager:
 
 pip install -r requirements.txt
 Note: It is strongly recommended to use a virtual environment to configure your development environment.
-
 
 ## Usage
 To run the ETL process, execute the following command:
