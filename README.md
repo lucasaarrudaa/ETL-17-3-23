@@ -8,10 +8,8 @@ The datasources are:
 | ------------- | ------------- |
 | google_ads_media_costs.jsonl	  | Google ads costs  |
 | facebook_ads_media_costs.jsonl	  | Facebook ads costs  |
-pageviews.txt	 ==	Google ads costs
-facebook_ads_media_costs.jsonl	== Facebook ads costs
-pageviews.txt	== Ads accessed by users 
-customer_leads_funnel.csv	== User's lead Analytical table
+| pageviews.txt	| Ads accessed by users |
+| customer_leads_funnel.csv	| User's lead Analytical table |
 
 This is a simple Python ETL (Extract, Transform, Load) application that transfers data from Amazon S3 to a PostgreSQL database. The project aims to integrate four different datasets, including two CSV files, one JSON file, and one XML file, and prepare an analytical database or table for the digital marketing team to perform queries and answer business questions. It also creates one big table containing all related data.
 
