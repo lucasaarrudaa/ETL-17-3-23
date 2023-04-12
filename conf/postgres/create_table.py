@@ -17,23 +17,22 @@ def create_table():
 
     try:
         cur.execute("""
-        CREATE TABLE IF NOT EXISTS advertisings (
-        campaign_date TEXT NULL,
-        campaign_name TEXT NULL,
-        impressions TEXT NULL,
-        clicks TEXT NULL,
-        cost TEXT NULL,
-        advertising TEXT NULL,
-        ip TEXT NULL,
-        device_id TEXT NULL,
-        campaign_link TEXT NULL,
-        data_click TEXT NULL,
-        lead_id TEXT NULL,
-        registered_at TEXT NULL,
-        credit_decision TEXT NULL,
-        credit_decision_at TEXT NULL,
-        signed_at TEXT NULL,
-        revenue TEXT NULL
+        campaign_date TIMESTAMP NULL,
+        campaign_name VARCHAR(50) NULL,
+        impressions INTEGER NULL,
+        clicks INTEGER NULL,
+        cost FLOAT NULL,
+        advertising VARCHAR(23) NULL,
+        ip VARCHAR(12) NULL,
+        device_id CHAR(11) NULL,
+        campaign_link VARCHAR(255) NULL,
+        data_click TIMESTAMP NULL,
+        lead_id CHAR(9) NULL,
+        registered_at TIMESTAMP NULL,
+        credit_decision CHAR(2) NULL,
+        credit_decision_at TIMESTAMP NULL,
+        signed_at TIMESTAMP NULL,
+        revenue FLOAT NULL
     )
     """)
         
