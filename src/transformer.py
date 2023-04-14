@@ -8,22 +8,22 @@ class Transformer:
         Changing types of columns in DF.        
         '''
         dt=pd.DataFrame(df)
-        dtypes ={'campaign_date':'object',
+        dtypes ={'campaign_date':'datetime64',
                  'campaign_name':'object',
-                 'impressions':'object',
-                 'clicks':'object',
-                 'cost':'object',
+                 'impressions':'int32',
+                 'clicks':'int32',
+                 'cost':'float64',
                  'advertising':'object',
                  'ip':'object',
                  'device_id':'object',
                  'campaign_link':'object',
-                 'data_click':'object',
+                 'data_click':'datetime64',
                  'lead_id':'object',
-                 'registered_at':'object',
+                 'registered_at':'datetime64',
                  'credit_decision':'object',
-                 'credit_decision_at':'object',
-                 'signed_at':'object',
-                 'revenue':'object'}
+                 'credit_decision_at':'datetime64',
+                 'signed_at':'datetime64',
+                 'revenue':'float16'}
         dt=dt.astype(dtype=dtypes)
         
         return dt

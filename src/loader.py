@@ -12,7 +12,6 @@ class Loader:
         self.table_name = 'advertisings'
         self.conn = None
         self.cursor = None
-
         
     def connect(self):
         
@@ -29,16 +28,15 @@ class Loader:
     def upload_dataframe(self, dataframe):
         
         print('Starting upload...')
-        # Cria lista de tuplas a partir do dataframe
+        # Create list of tuples from dataframe
         data = [tuple(row) for row in dataframe.to_numpy()]
         
-        # Monta string de placeholders (?, ?, ?...)
         placeholders = ', '.join(['%s'] * len(data[0]))
         
         # Cria comando SQL
         sql = f"INSERT INTO {self.table_name} VALUES ({placeholders})"
         
-        # Executa comando SQL com os dados
+        # Run SQL command with data
         self.cursor.executemany(sql, data)
         self.conn.commit()
         
