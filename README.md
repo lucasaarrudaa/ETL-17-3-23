@@ -9,11 +9,10 @@ To install the required dependencies, please use the following command using pip
 pip install -r requirements.txt
 Note: It is strongly recommended to use a virtual environment to configure your development environment.
 
-
 ## Usage
 To run the ETL process, execute the following command:
-python main.py
-Please make sure to set up all the required dependencies, such as PostgreSQL and MySQL Workbench, in order to ensure the proper functioning of the application.
+python etl.py
+Please make sure to set up all the required dependencies, such as PostgreSQL, in order to ensure the proper functioning of the application.
 
 ## Objective
 The main objective of this project is to integrate different datasets and create an analytical table that can be used to answer business questions for the digital marketing team.
