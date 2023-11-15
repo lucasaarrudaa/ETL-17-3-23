@@ -1,14 +1,15 @@
+import os
+from dotenv import load_dotenv
 import psycopg2
 
 class Loader:
-    
     def __init__(self):
-        
-        self.host = 'localhost'
-        self.port = 15432
-        self.dbname = 'campaign'
-        self.user = 'postgres'
-        self.password = 'Postgres'
+        load_dotenv()  
+        self.host = os.getenv('DB_HOST')
+        self.port = int(os.getenv('DB_PORT'))
+        self.dbname = os.getenv('DB_NAME')
+        self.user = os.getenv('DB_USER')
+        self.password = os.getenv('DB_PASSWORD')
         self.table_name = 'advertisings'
         self.conn = None
         self.cursor = None
