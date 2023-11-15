@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Postgres
+      POSTGRES_DB: campaign
+    ports:
+      - "15432:5432"
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: lucasarralt@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: 123456789
+    ports:
+      - "5050:80"
+    depends_on:
+      - db
