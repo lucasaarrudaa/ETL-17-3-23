@@ -15,16 +15,18 @@ class Loader:
         self.cursor = None
         
     def connect(self):
-        
-        self.conn = psycopg2.connect(
-            host=self.host,
-            port=self.port,
-            dbname=self.dbname,
-            user=self.user,
-            password=self.password
-        )
-        self.cursor = self.conn.cursor()
-        print("Connected to database.")
+        try:
+            self.conn = psycopg2.connect(
+                host=self.host,
+                port=self.port,
+                dbname=self.dbname,
+                user=self.user,
+                password=self.password
+            )
+            self.cursor = self.conn.cursor()
+            print("Connected to database.")
+        except psycopg2.Error as e:
+            print(f"Error connecting to the database: {e}")
         
     def upload_dataframe(self, dataframe):
         
