@@ -29,21 +29,19 @@ class Loader:
             print(f"Error connecting to the database: {e}")
         
     def upload_dataframe(self, dataframe):
-        
-        print('Starting upload...')
-        # Create list of tuples from dataframe
-        data = [tuple(row) for row in dataframe.to_numpy()]
-        
-        placeholders = ', '.join(['%s'] * len(data[0]))
-        
-        # Cria comando SQL
-        sql = f"INSERT INTO {self.table_name} VALUES ({placeholders})"
-        
-        # Run SQL command with data
-        self.cursor.executemany(sql, data)
-        self.conn.commit()
-        
-        print("Upload successful!")
+        try:
+            print('Starting upload...')
+            data = [tuple(row) for row in dataframe.to_numpy()]
+            
+            placeholders = ', '.join(['%s'] * len(data[0]))
+            sql = f"INSERT INTO {self.table_name} VALUES ({placeholders})"
+            
+            self.cursor.executemany(sql, data)
+            self.conn.commit()
+            print("Upload successful!")
+        except psycopg2.Error as e:
+            self.conn.rollback()
+            print(f"Error uploading data: {e}")
         
     def disconnect(self):
         
